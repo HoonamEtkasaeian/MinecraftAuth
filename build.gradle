@@ -134,6 +134,14 @@ String latestCommitHash() {
     exec {
         commandLine "git", "rev-parse", "--short", "HEAD"
         standardOutput = stdout
+        dependencyResolutionManagement {
+		repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+		repositories {
+			mavenCentral()
+			maven { url 'https://jitpack.io' }
+		}
+        }
+        
     }
     return stdout.toString().trim()
 }
